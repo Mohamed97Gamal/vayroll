@@ -122,7 +122,7 @@ final response = await _client.post(Urls.login, data: {
       final accessToken = (await DiskRepo().getTokens()).first;
       final response = await _client.post(Urls.logout, data: {"token": accessToken});
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -174,7 +174,7 @@ final response = await _client.post(Urls.login, data: {
       final response = await _client
           .post(Urls.acceptDataConsent, data: {"token": accessToken, "acceptance": true, "userId": userId});
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -188,7 +188,7 @@ final response = await _client.post(Urls.login, data: {
         queryParameters: {"email": email},
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -203,7 +203,7 @@ final response = await _client.post(Urls.login, data: {
       final response = await _client
           .post(Urls.newPassword, data: {"token": accessToken, "new_password": newPassword, "userId": userId});
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -220,7 +220,7 @@ final response = await _client.post(Urls.login, data: {
         data: {"token": accessToken, "userId": userId, "old_password": currentPassword, "new_password": newPassword},
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -345,7 +345,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -369,7 +369,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -474,7 +474,7 @@ final response = await _client.post(Urls.login, data: {
         "userId": userId,
       });
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -495,7 +495,7 @@ final response = await _client.post(Urls.login, data: {
         "userId": userId,
       });
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -513,7 +513,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -560,7 +560,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -586,7 +586,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -635,7 +635,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -661,7 +661,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -708,7 +708,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -734,7 +734,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -779,7 +779,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -802,7 +802,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -942,7 +942,7 @@ final response = await _client.post(Urls.login, data: {
         data: {"token": accessToken, "employeeId": employeeId},
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -962,7 +962,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -987,7 +987,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1085,7 +1085,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1109,7 +1109,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1131,7 +1131,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1490,7 +1490,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1573,7 +1573,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1655,7 +1655,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1674,7 +1674,7 @@ final response = await _client.post(Urls.login, data: {
         data: appealRequestInfo.toJson(),
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1764,7 +1764,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1793,7 +1793,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1864,7 +1864,7 @@ final response = await _client.post(Urls.login, data: {
         data: appealNoteRequestInfo.toJson(),
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -1909,7 +1909,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -2344,7 +2344,7 @@ final response = await _client.post(Urls.login, data: {
       );
 
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as String);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
