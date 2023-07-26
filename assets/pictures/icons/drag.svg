@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="25" viewBox="0 0 10 25">
+  <g id="drag" transform="translate(-22 -219)">
+    <circle id="Ellipse_1569" cx="2" cy="2" r="2" transform="translate(28 219)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1605" cx="2" cy="2" r="2" transform="translate(22 219)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1570" cx="2" cy="2" r="2" transform="translate(28 226)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1604" cx="2" cy="2" r="2" transform="translate(22 226)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1571" cx="2" cy="2" r="2" transform="translate(28 233)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1603" cx="2" cy="2" r="2" transform="translate(22 233)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1601" cx="2" cy="2" r="2" transform="translate(28 240)" fill="#d2d2d2"/>
+    <circle id="Ellipse_1602" cx="2" cy="2" r="2" transform="translate(22 240)" fill="#d2d2d2"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19">
+  <g id="department" transform="translate(-26.976 -579.065)">
+    <g id="Rectangle_6245" data-name="Rectangle 6245" transform="translate(30.976 583.065)" fill="#fff" stroke="#013c68" stroke-width="1">
+      <rect width="13" height="11" rx="2" stroke="none"/>
+      <rect x="0.5" y="0.5" width="12" height="10" rx="1.5" fill="none"/>
+    </g>
+    <g id="Rectangle_6246" data-name="Rectangle 6246" transform="translate(44.976 585.065)" fill="none" stroke="#013c68" stroke-width="1">
+      <rect width="3" height="7" rx="1.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="2" height="6" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_6248" data-name="Rectangle 6248" transform="translate(26.976 585.065)" fill="none" stroke="#013c68" stroke-width="1">
+      <rect width="3" height="7" rx="1.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="2" height="6" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_6247" data-name="Rectangle 6247" transform="translate(33.976 598.065) rotate(-90)" fill="none" stroke="#013c68" stroke-width="1">
+      <rect width="3" height="7" rx="1.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="2" height="6" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_6249" data-name="Rectangle 6249" transform="translate(33.976 582.065) rotate(-90)" fill="none" stroke="#013c68" stroke-width="1">
+      <rect width="3" height="7" rx="1.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="2" height="6" rx="1" fill="none"/>
+    </g>
+  </g>
+</svg>

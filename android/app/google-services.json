@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "560953317442",
+    "project_id": "vayroll",
+    "storage_bucket": "vayroll.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560953317442:android:ab4f03bafbabf8585bb5db",
+        "android_client_info": {
+          "package_name": "com.example.flutter_test_proj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560953317442-a0eckuuoaec1mrlle4h3i03os0o9l0hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpSEEOph-bxfDDwF6ycKr4W9qQnWlEOVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560953317442-a0eckuuoaec1mrlle4h3i03os0o9l0hg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "560953317442-8jg74fhr2ja042tpbprcp3frb8qppocl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vpayMobile"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560953317442:android:0fb405123a982b175bb5db",
+        "android_client_info": {
+          "package_name": "com.transskills.vayroll"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560953317442-pmq8rl1mlb497caa6lm0gun3c0hnln2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.transskills.vayroll",
+            "certificate_hash": "42f776c30ee98a28ae9455bbbb74379f433234d3"
+          }
+        },
+        {
+          "client_id": "560953317442-a0eckuuoaec1mrlle4h3i03os0o9l0hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpSEEOph-bxfDDwF6ycKr4W9qQnWlEOVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560953317442-a0eckuuoaec1mrlle4h3i03os0o9l0hg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "560953317442-8jg74fhr2ja042tpbprcp3frb8qppocl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vpayMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
