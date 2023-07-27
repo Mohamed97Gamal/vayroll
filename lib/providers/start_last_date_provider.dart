@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vayroll/models/models.dart';
 
 class StartEndDateProvider extends ChangeNotifier {
-  DateTime? _startDate;
-  DateTime? _endDate;
+  DateTime? _startDate=DateTime(1800,1,1);
+  DateTime? _endDate=DateTime(2300,12,31);
   EventsResponse? _allEvents;
 
   DateTime? get startDate => _startDate;

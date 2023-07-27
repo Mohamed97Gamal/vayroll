@@ -64,12 +64,11 @@ class CalenderItemState extends State<CalenderItem> {
         ),
         TableCalendar(
           onPageChanged: widget.onPageChanged,
-          onCalendarCreated: (pageController){
-
-          },
+          // onCalendarCreated: (pageController){
+          // },
           calendarFormat: CalendarFormat.month,
           firstDay: DateTime(1800,1,1),
-          focusedDay: widget?.selectedDay ?? DateTime.now(),
+          focusedDay: selectedDate??widget.selectedDay,
           lastDay: DateTime(2300,12,1),
           availableGestures: AvailableGestures.horizontalSwipe,
           // startDay: DateTime(DateTime.now().year),
@@ -107,6 +106,9 @@ class CalenderItemState extends State<CalenderItem> {
               return isSameDay(DateTime.now(), day) ? todayhighlited(day) : selectedDay(day);
             },
           ),
+          selectedDayPredicate: (day){
+            return ((selectedDate??widget.selectedDay) ==day) ;
+          },
           headerStyle: HeaderStyle(
             formatButtonVisible: false,
             leftChevronVisible: false,
@@ -128,7 +130,12 @@ class CalenderItemState extends State<CalenderItem> {
             outsideDaysVisible: false,
            // highlightToday: true,
           ),
-          onDaySelected: widget.onDaySelected,
+          onDaySelected: (day,day2){
+            widget.onDaySelected!(day,day2);
+            setState(() {
+              selectedDate=day;
+            });
+          },
        //   onVisibleDaysChanged: widget.onPageChanged,
           rowHeight: 50,
        //   calendarController: widget.calendarController,

@@ -66,6 +66,8 @@ import 'package:vayroll/views/settings/view_doument.dart';
 import 'package:vayroll/views/walkthrough/walkthrough.dart';
 import 'package:vayroll/widgets/widgets.dart';
 
+import '../views/calender/calender.dart';
+
 class Navigation {
   static Future navToHome(BuildContext context) async {
     bool handled = await LocalNotification().handleInitialMessage(context);
@@ -182,7 +184,11 @@ class Navigation {
   }
 
   static Future navTocalenderPage(BuildContext context, Employee? employeeInfo) async {
- return;
+    await Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) => CalenderPage(employeeInfo: employeeInfo!),
+      ),
+    );
   }
 
   static Future navToChangeLanguage(BuildContext context) async {

@@ -1,21 +1,15 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:isolate';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:shake/shake.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:vayroll/providers/approved_requests_tab_index_provider.dart';
 import 'package:vayroll/providers/check_in_out_notify_provider.dart';
 import 'package:vayroll/providers/providers.dart';
-import 'package:vayroll/utils/common.dart';
 import 'package:vayroll/utils/notifications.dart';
 import 'package:vayroll/views/splash/splash.dart';
 
@@ -97,11 +91,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     LocalNotification().init(context);
-    ShakeDetector.autoStart(onPhoneShake: () async {
-      final String docsPath = (await getApplicationDocumentsDirectory()).path;
-      final String logFilePath = '$docsPath/Logs_${dateFormat2.format(DateTime.now())}.txt';
-      if (File(logFilePath).existsSync()) Share.shareFiles([logFilePath]);
-    });
   }
 
   @override

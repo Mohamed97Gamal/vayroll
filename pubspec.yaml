@@ -52,7 +52,6 @@ dependencies:
   confetti: ^0.7.0
   dropdown_search: ^5.0.6
   flutter_local_notifications: ^15.1.0+1
-  shake: ^2.2.0
   assorted_layout_widgets: ^8.0.4
   dotted_line: ^3.0.0
   showcaseview: ^2.0.3

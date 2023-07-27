@@ -60,8 +60,8 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
             _selectedDay,
             daysWithevent,
             daysWitheventBirthdays,
-            firstDay: context.read<StartEndDateProvider>().startDate??DateTime.now(),
-            lastDay: context.read<StartEndDateProvider>().endDate??DateTime(2300,1,1),
+            firstDay: context.read<StartEndDateProvider>().startDate!,
+            lastDay: context.read<StartEndDateProvider>().endDate!,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             // onCalendarCreated: (first, last, format) {
             //   Future.microtask(() => setState(() {
@@ -70,13 +70,15 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
             //         context.read<StartEndDateProvider>().allEvents = allEvents;
             //       }));
             // },
-            // onPageChanged: (first, last, format) {
-            //   Future.microtask(() => setState(() {
-            //         context.read<StartEndDateProvider>().startDate = first;
-            //         context.read<StartEndDateProvider>().endDate = last;
-            //         context.read<StartEndDateProvider>().allEvents = allEvents;
-            //       }));
-            // },
+            onPageChanged: (focusedDay) {
+             // Future.microtask(() => setState(() {
+                //         context.read<StartEndDateProvider>().startDate = first;
+                //         context.read<StartEndDateProvider>().endDate = last;
+                //         context.read<StartEndDateProvider>().allEvents = allEvents;
+                //
+                 //_selectedDay=focusedDay;
+            //  }));
+            },
           ),
         );
       },

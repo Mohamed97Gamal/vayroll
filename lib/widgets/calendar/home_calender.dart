@@ -98,15 +98,22 @@ class HomeCalenderState extends State<HomeCalender> {
           focusedDay: widget.selectedDay,
           firstDay: widget.firstDay,
           lastDay: widget.lastDay,
+          daysOfWeekVisible: false,
           calendarFormat: CalendarFormat.week,
           headerVisible: false,
           calendarBuilders: CalendarBuilders(
             defaultBuilder: (context, day, focusedDay) {
               return unselectedDay(day);
             },
-            selectedBuilder: (context, day, focusedDay) {
+            todayBuilder: (context, day, focusedDay) {
               return todayhighlited(day);
             },
+            disabledBuilder:  (context, day, focusedDay) {
+              return unselectedDay(day);
+            },
+            dowBuilder: (context,day){
+              return unselectedDay(day);
+            }
           ),
           headerStyle: HeaderStyle(
             formatButtonVisible: false,
@@ -170,7 +177,7 @@ class HomeCalenderState extends State<HomeCalender> {
 
   Widget todayhighlited(DateTime day) {
     String formatedDay = DateFormat("MM-dd")
-        .format(DateTime(widget?.selectedDay?.year??2023, widget?.selectedDay?.month??8, widget?.selectedDay?.day??1));
+        .format(DateTime(widget.selectedDay.year, widget.selectedDay.month, widget.selectedDay.day));
     return Stack(
       children: [
         Center(
@@ -215,7 +222,7 @@ class HomeCalenderState extends State<HomeCalender> {
 
                 Visibility(
                   visible: (widget.daysWithEvents.contains(
-                          DateTime(widget?.selectedDay?.year??2023, widget?.selectedDay?.month??8, widget?.selectedDay?.day??1)) ||
+                          DateTime(widget.selectedDay.year??2023, widget.selectedDay.month??8, widget.selectedDay.day??1)) ||
                       (widget.daysWithEventsBirthdays.contains(formatedDay) &&
                           utl.isSameDayWithoutYear(DateTime.now(), widget.employeeInfo.birthDate))),
                   child: isSameDay(DateTime.now(), widget.employeeInfo.birthDate)

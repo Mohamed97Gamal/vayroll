@@ -244,14 +244,14 @@ class DashboardPageState extends State<DashboardPage> {
           );
           break;
         case WidgetName.weeklyAttendance:
-          if (context.watch<StartEndDateProvider>().startDate?.toString().isNotEmpty == true) {
-            _widgets.add(_weeklyAttendance(context.watch<EmployeeProvider>().employee?.id));
-          }
+         // if (context.watch<StartEndDateProvider>().startDate?.toString().isNotEmpty == true) {
+         //   _widgets.add(_weeklyAttendance(context.watch<EmployeeProvider>().employee?.id));
+         // }
           break;
         case WidgetName.birthdays:
-          if (context.watch<StartEndDateProvider>().startDate?.toString().isNotEmpty == true) {
-            _widgets.add(BirthdayHomeWidget(employee: context.watch<EmployeeProvider>().employee));
-          }
+         // if (context.watch<StartEndDateProvider>().startDate?.toString().isNotEmpty == true) {
+         //   _widgets.add(BirthdayHomeWidget(employee: context.watch<EmployeeProvider>().employee));
+         // }
           break;
         case WidgetName.leaves:
           _widgets.add(NewRefreshable(

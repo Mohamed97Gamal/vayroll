@@ -45,7 +45,7 @@ class LoginFirstTimePageState extends State<LoginFirstTimePage> {
         context: context,
         initFuture: () async {
           var loginResponse = await ApiRepo().login(userName.trim(), passwordEncoded);
-          loginResponseMessage = loginResponse.message;
+          loginResponseMessage = loginResponse.message??"Something Went Wrong";
           if (loginResponse.result != null) {
             await DiskRepo().saveTokens(
               loginResponse.result!.accessToken!,
