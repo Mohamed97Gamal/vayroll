@@ -37,7 +37,7 @@ Future<bool?> showLeaveBalanceBottomSheet({
             SizedBox(height: 16),
             Center(
               child: CircularPercentIndicator(
-                radius: 90.0,
+                radius: 45.0,
                 lineWidth: 8.0,
                 percent: max(
                   0.0,

@@ -3,8 +3,6 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
-
 import "package:collection/collection.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,9 +22,6 @@ import 'package:vayroll/providers/providers.dart';
 import 'package:vayroll/repo/api/api_repo.dart';
 import 'package:vayroll/theme/app_themes.dart';
 import 'package:vayroll/utils/utils.dart';
-import 'package:vayroll/widgets/custom_elevated_button.dart';
-import 'package:vayroll/widgets/inner_text_form_field.dart';
-import 'package:vayroll/widgets/leave/brief_bottom_sheet.dart';
 import 'package:vayroll/widgets/widgets.dart';
 
 import '../three_option_bottom_sheet.dart';
@@ -343,14 +338,14 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //show when its summary
                       CircularPercentIndicator(
-                        radius: 64.0,
+                        radius: 35.0,
                         lineWidth: 5.0,
                         percent: max(0.0, calculatePercentage(leaveBalanceSummary)),
                         center: percentageText(context, leaveBalanceSummary, 9, isSummary: widget.summary),
@@ -441,14 +436,14 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
             borderRadius: BorderRadius.circular(6),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // first reload of the page
                 CircularPercentIndicator(
-                  radius: 64.0,
+                  radius: 35.0,
                   lineWidth: 5.0,
                   percent: max(0.0, leaveBalanceDefault.percentage as double),
                   center: percentageText(context, leaveBalanceDefault, 9, isSummary: widget.summary),
@@ -573,10 +568,18 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                     if (leaveBalancesPeriod!.leaveType == "CUSTOM_BALANCE") {
                       allBalancesSum = before!.currentBalance! - before.maxNegativeBalanceMinus;
                     } else if (leaveBalancesPeriod!.leaveType == "SELF_BALANCE") {
-                      allBalancesSum = before!.currentBalance! + before.carryForwardBalance! ??
-                          0 + before.remainingNegativeBalance! ??
-                          0 - before.maxNegativeBalanceMinus ??
-                          0;
+                      if(before?.currentBalance !=null && before?.carryForwardBalance !=null){
+                        allBalancesSum = before!.currentBalance! + before.carryForwardBalance! ;
+                    }
+                     else if(before?.remainingNegativeBalance !=null){
+                        allBalancesSum = before!.remainingNegativeBalance! +0.0;
+                      }
+                      else if(before?.maxNegativeBalanceMinus !=null){
+                        allBalancesSum = 0.0- before!.maxNegativeBalanceMinus;
+                      }
+                      else {
+                        allBalancesSum=0.0;
+                      }
                     } else if (leaveBalancesPeriod!.leaveType == "REQUEST_BASED") {
                       if (fields.firstWhere((e) => e.requestDefinitionStateAttribute!.code == "END_DATE").dateValue !=
                               null &&
@@ -601,14 +604,14 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // show when select start & end dates
                           CircularPercentIndicator(
-                            radius: 64.0,
+                            radius: 35.0,
                             lineWidth: 5.0,
                             percent: max(0.0, leaveBalancesPeriod!.percentage as double),
                             center: percentageText(context, leaveBalancesPeriod!, 9, isSummary: widget.summary),
@@ -981,9 +984,9 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
         if (widget.leaveBalancesValues![i].leaveType == "CUSTOM_BALANCE") {
           checkBalanceIsNOTZero = widget.leaveBalancesValues![i].currentBalance ?? 0;
         } else if (widget.leaveBalancesValues![i].leaveType == "SELF_BALANCE") {
-          checkBalanceIsNOTZero = widget.leaveBalancesValues![i].currentBalance ??
-              0 + widget.leaveBalancesValues![i].carryForwardBalance! ??
-              0 + widget.leaveBalancesValues![i].remainingNegativeBalance! ??
+          checkBalanceIsNOTZero = widget.leaveBalancesValues?[i].currentBalance ??
+               widget.leaveBalancesValues?[i].carryForwardBalance ??
+               widget.leaveBalancesValues?[i].remainingNegativeBalance ??
               0;
         } else if (widget.leaveBalancesValues![i].leaveType == "REQUEST_BASED") {
           checkBalanceIsNOTZero = widget.leaveBalancesValues![i].maxDaysPerRequest;
@@ -1039,7 +1042,7 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                           child: InnerSearchableDropdown<Department>(
                             hint:
                                 "${context.appStrings!.select} ${fieldInfo.requestDefinitionStateAttribute?.defaultName}",
-                            itemAsString: (lookup) => lookup.name,
+                            itemAsString: (lookup) => lookup.name??"",
                             filterFunction: (value, filter) =>
                                 value.name!.toLowerCase().contains(filter.trim().toLowerCase()),
                             value: fieldInfo.uuidValue == null
@@ -1078,7 +1081,7 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
             ignoring: widget.summary,
             child: InnerSearchableDropdown<LookupValueDTO>(
               hint: "${context.appStrings!.select} ${fieldInfo.requestDefinitionStateAttribute?.defaultName}",
-              itemAsString: (lookup) => lookup.name,
+              itemAsString: (lookup) => lookup.name??"",
               filterFunction: (value, filter) => value.name!.toLowerCase().startsWith(filter.trim().toLowerCase()),
               value: fieldInfo.uuidValue == null
                   ? null

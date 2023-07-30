@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vayroll/assets/icons.dart';
 import 'package:vayroll/assets/images.dart';
 import 'package:vayroll/theme/app_themes.dart';
+import 'package:vayroll/utils/common.dart';
 
 class InnerSearchableDropdown<T> extends StatelessWidget {
   final String? label;
@@ -11,11 +12,12 @@ class InnerSearchableDropdown<T> extends StatelessWidget {
   final List<T>? items;
   final T? value;
   final Widget? dropdownIcon;
+  final Widget Function(BuildContext, T?)? dropdownBuilder;
   final Widget? clearIcon;
   final Function(T?)? onChanged;
   final Function(T?)? onSaved;
   final Function(T?)? validator;
-  final String? Function(T)? itemAsString;
+  final String Function(T)? itemAsString;
   final bool Function(T, String)? filterFunction;
   final bool isDense;
   final bool showSearchBox;
@@ -36,7 +38,7 @@ class InnerSearchableDropdown<T> extends StatelessWidget {
     this.isDense = true,
     this.showSearchBox = true,
     this.showClearButton = false,
-    this.itemAsString,
+    this.itemAsString, this.dropdownBuilder,
   }) : super(key: key);
 
   @override
@@ -55,9 +57,7 @@ class InnerSearchableDropdown<T> extends StatelessWidget {
                   dropdownSearchDecoration: InputDecoration(
                     hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(color: DefaultThemeColors.gainsboro),
                     hintText: hint??"",
-
                     isDense: isDense,
-                    contentPadding: EdgeInsets.zero,
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: DefaultThemeColors.nepal),
                     ),
@@ -68,26 +68,41 @@ class InnerSearchableDropdown<T> extends StatelessWidget {
                     errorStyle: Theme.of(context).textTheme.subtitle2!.copyWith(height: 1.20),
                   ),
                 ),
-                dropdownBuilder: (context,T){
-                  if(T==null)
-                    {return Container();}
-                  else
-                    return Container();
-                },
-                clearButtonProps: ClearButtonProps(
+                // dropdownBuilder: dropdownBuilder??(context,T){
+                //   if(T==null)
+                //     {return Container();}
+                //   else
+                //     return Container();
+                // },
+                dropdownButtonProps: DropdownButtonProps(
                   icon: dropdownIcon ?? Icon(Icons.keyboard_arrow_down, color: Theme.of(context).primaryColor),
                 ),
-
                 selectedItem: value,
-                popupProps: PopupProps.bottomSheet(),
-
+                popupProps: PopupProps.bottomSheet(
+                  showSearchBox: showSearchBox,
+                  fit: FlexFit.loose,
+                  searchFieldProps: TextFieldProps(
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.search,size: 25.0,color: Theme.of(context).colorScheme.primary),
+                      hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(color: DefaultThemeColors.gainsboro),
+                      isDense: isDense,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: DefaultThemeColors.nepal),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+                      ),
+                      errorMaxLines: 3,
+                      errorStyle: Theme.of(context).textTheme.subtitle2!.copyWith(height: 1.20),
+                    ),
+                  ),
+                ),
                 items: items!,
-
                 validator: validator as String? Function(T?)?,
                 onChanged: onChanged,
                 onSaved: onSaved,
                 filterFn: filterFunction,
-                itemAsString: itemAsString as String Function(T)?,
+                itemAsString: itemAsString,
               ),
             ),
           ],
