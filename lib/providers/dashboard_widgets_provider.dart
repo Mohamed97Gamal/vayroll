@@ -7,7 +7,7 @@ import 'package:vayroll/repo/disk/disk_repo.dart';
 class DashboardWidgetsProvider extends ChangeNotifier {
   List<DashboardWidget>? _widgets;
 
-  List<DashboardWidget> get widgets => _widgets!;
+  List<DashboardWidget> get widgets => _widgets??[];
 
   set widgets(List<DashboardWidget> value) {
     _widgets = List.from(value);
