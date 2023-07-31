@@ -35,23 +35,6 @@ class HomeCalender extends StatefulWidget {
 }
 
 class HomeCalenderState extends State<HomeCalender> {
- // CalendarController _calendarController = CalendarController();
-  int month = DateTime.now().month;
-
-  double? startX;
-  num? endX;
-
-  @override
-  void initState() {
-    super.initState();
-   // _calendarController = CalendarController();
-  }
-
-  @override
-  void dispose() {
-   // _calendarController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +94,9 @@ class HomeCalenderState extends State<HomeCalender> {
             disabledBuilder:  (context, day, focusedDay) {
               return unselectedDay(day);
             },
+              outsideBuilder:  (context, day, focusedDay) {
+                return unselectedDay(day);
+              },
             dowBuilder: (context,day){
               return unselectedDay(day);
             }
@@ -137,7 +123,6 @@ class HomeCalenderState extends State<HomeCalender> {
             weekendTextStyle: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.w500),
             selectedTextStyle:
                 Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.w500, color: Colors.white),
-            //highlightToday: true,
           ),
          // enabledDayPredicate: widget.selectedDayPredicate,
          // onVisibleDaysChanged: widget.onPageChanged,

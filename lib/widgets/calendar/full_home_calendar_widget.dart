@@ -70,7 +70,7 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
             //         context.read<StartEndDateProvider>().allEvents = allEvents;
             //       }));
             // },
-            onPageChanged: (focusedDay) {
+            //onPageChanged: (focusedDay) {
              // Future.microtask(() => setState(() {
                 //         context.read<StartEndDateProvider>().startDate = first;
                 //         context.read<StartEndDateProvider>().endDate = last;
@@ -78,7 +78,7 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
                 //
                  //_selectedDay=focusedDay;
             //  }));
-            },
+           // },
           ),
         );
       },
