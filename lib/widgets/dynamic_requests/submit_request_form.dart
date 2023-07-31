@@ -99,12 +99,13 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
   bool showPassword = false;
   bool showBalanceDetails = false;
   num allBalancesSum = 0.0;
-  var defaultSumBalance = 0.0;
+  num defaultSumBalance = 0.0;
   bool isBalanceValid = true;
   bool leavePeriodHasError = false;
   String? hint;
 
-  DateTime startDate = DateTime.now(), endDate = DateTime.now();
+  DateTime startDate = DateTime.now();
+      DateTime? endDate;
   DateTime? tempEndDate;
   LeaveBalanceResponseDTO leaveBalanceSummary = LeaveBalanceResponseDTO();
   LeaveBalanceResponseDTO? leaveBalancesPeriod = LeaveBalanceResponseDTO();
@@ -416,14 +417,25 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
     LeaveBalanceResponseDTO leaveBalanceDefault =
         widget.leaveBalancesValues!.firstWhere(((element) => element.leaveRuleId == fieldInfo.uuidValue));
     if (leaveBalanceDefault.leaveType == "CUSTOM_BALANCE") {
-      defaultSumBalance = leaveBalanceDefault.currentBalance! - 1.toDouble();
+      defaultSumBalance = leaveBalanceDefault.currentBalance! - 1;
     } else if (leaveBalanceDefault.leaveType == "SELF_BALANCE") {
-      defaultSumBalance = leaveBalanceDefault.currentBalance as double? ??
-          0 + (leaveBalanceDefault.carryForwardBalance as double) ??
-          0 + (leaveBalanceDefault.remainingNegativeBalance as double) ??
-          0 - 1.toDouble();
+      if(leaveBalanceDefault.currentBalance !=null)
+        {
+          defaultSumBalance=leaveBalanceDefault.currentBalance!;
+        }
+      if(leaveBalanceDefault.carryForwardBalance !=null)
+      {
+        defaultSumBalance=0+leaveBalanceDefault.carryForwardBalance!;
+      }
+      if(leaveBalanceDefault.remainingNegativeBalance !=null)
+      {
+        defaultSumBalance=0+leaveBalanceDefault.remainingNegativeBalance!;
+      }
+      else{
+        defaultSumBalance=0-1;
+      }
     } else if (leaveBalanceDefault.leaveType == "REQUEST_BASED") {
-      defaultSumBalance = leaveBalanceDefault.maxDaysPerRequest as double? ?? 0 - 1.toDouble();
+      defaultSumBalance = leaveBalanceDefault.maxDaysPerRequest ?? 0 - 1;
     }
     if (fields.firstWhere((e) => e.requestDefinitionStateAttribute!.code == "START_DATE").dateValue == null) {
       return InkWell(
@@ -514,7 +526,7 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
               var after = await ApiRepo().leaveBalancePeriod(
                 widget.employee?.id,
                 dateFormat2.format(startDate),
-                dateFormat2.format(endDate),
+                dateFormat2.format(endDate??DateTime.now()),
                 leaveBalanceInfo.leaveBalanceId,
                 leaveBalanceInfo.leaveRuleId,
               );
@@ -689,7 +701,7 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                   ? "${fieldInfo.requestDefinitionStateAttribute?.defaultName} ${context.appStrings!.maxLengthIsTwoHundredCharacter}"
                   : null)
           : value!.isNotEmpty
-              ? value!.length > 200
+              ? value.length > 200
                   ? "${fieldInfo.requestDefinitionStateAttribute?.defaultName} ${context.appStrings!.maxLengthIsTwoHundredCharacter}"
                   : null
               : null,
@@ -863,7 +875,7 @@ class SubmitRequestFormState extends State<SubmitRequestForm> {
                   endDate = startDate;
                   fields.firstWhere((e) => e.requestDefinitionStateAttribute!.code == "END_DATE").dateValue = null;
                   fields.firstWhere((e) => e.requestDefinitionStateAttribute!.code == "END_DATE").endDate = startDate;
-                  if (startDate.isAfter(endDate)) {
+                  if (startDate.isAfter(endDate??DateTime.now())) {
                     endDate = startDate;
                     fields.firstWhere((e) => e.requestDefinitionStateAttribute!.code == "END_DATE").dateValue =
                         intL.DateFormat('yyyy-MM-dd 00:00:00.000').format(dateTime);
@@ -1231,7 +1243,7 @@ class DecimalTypeWidget extends StatelessWidget {
                       ? "${fieldInfo.requestDefinitionStateAttribute?.defaultName}  ${context.appStrings!.maxLengthIsFifteenNumber}"
                       : null)
               : value!.isNotEmpty
-                  ? value!.length > 15
+                  ? value.length > 15
                       ? "${fieldInfo.requestDefinitionStateAttribute?.defaultName}  ${context.appStrings!.maxLengthIsFifteenNumber}"
                       : null
                   : null,
@@ -1639,7 +1651,7 @@ class _OCRTypeFieldState extends State<OCRTypeField> {
           Expanded(
             flex: 8,
             child: Text(
-              attachment!.name!,
+              attachment.name!,
               overflow: TextOverflow.ellipsis,
             ),
           ),

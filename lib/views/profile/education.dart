@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:vayroll/models/models.dart';
@@ -78,7 +78,7 @@ class EducationTabState extends State<EducationTab> {
                     initPageFuture: (pageKey) async {
                       var dataResponse =
                           await ApiRepo().getEducations(context.read<EmployeeProvider>().employee?.id, pageKey, 7);
-                      return (dataResponse.result!.toPagedList() ?? []) as FutureOr<PagedList<EducationResponseDTO>>;
+                      return (dataResponse.result?.toPagedList() ?? []) as FutureOr<PagedList<EducationResponseDTO>>;
                     },
                     //noItemMainAxis: MainAxisAlignment.start,
                     itemBuilder: (context, item, index) {
