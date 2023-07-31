@@ -53,7 +53,7 @@ class ApiRepo {
             message: (e.response!.data ?? "").toString().isNotEmpty
                 ? e.response!.data['error'] ?? e.response!.data['message']
                 : e.error.toString(),
-            errors: (e?.response?.data['errors'] as List?)?.map((e) => e as String).toList(),
+            errors: (e.response?.data['errors'] as List?)?.map((e) => e as String).toList(),
           );
         case DioExceptionType.unknown:
           return BaseResponse(status: false, message: 'Connection Failed');
@@ -1599,26 +1599,20 @@ final response = await _client.post(Urls.login, data: {
           (_) => RequestDetailsResponse.fromJson(
             response.data['result'],
             (_) {
-              if (response?.data['result']['error'] == "") {
-                switch (response?.data['result']['requestInfo']['transactionClassName']) {
+              if (response.data['result']['error'] == "") {
+                switch (response.data['result']['requestInfo']['transactionClassName']) {
                   case RequestProfileType.employeeEducation:
-                    return EducationResponseDTO.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return EducationResponseDTO.fromJson(response.data['result']['newValue']);
                   case RequestProfileType.employeeCertificate:
-                    return CertificateResponseDTO.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return CertificateResponseDTO.fromJson(response.data['result']['newValue']);
                   case RequestProfileType.employeeSkill:
-                    return SkillsResponseDTO.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return SkillsResponseDTO.fromJson(response.data['result']['newValue']);
                   case RequestProfileType.employeeWorkExperience:
-                    return ExperiencesResponseDTO.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return ExperiencesResponseDTO.fromJson(response.data['result']['newValue']);
                   case RequestProfileType.personalInformation:
-                    return Employee.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return Employee.fromJson(response.data['result']['newValue']);
                   case RequestProfileType.employeeEmergencyContact:
-                    return EmergencyContact.fromJson(response?.data['result']['newValue']);
-                    break;
+                    return EmergencyContact.fromJson(response.data['result']['newValue']);
 
                   default:
                     return null;

@@ -48,7 +48,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     },
                     itemBuilder: (context, item, index) {
                       late var bytes;
-                      if (item?.image != null) {
+                      if (item.image != null) {
                         bytes = Uint8List.fromList(item.image!.content!);
                       }
                       return InkWell(

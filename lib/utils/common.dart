@@ -18,7 +18,7 @@ T? tryCast<T>(dynamic obj) {
   return (obj is T) ? obj : null;
 }
 
-String? nullIfEmpty(String value, {bool trimmed = true}) {
+String? nullIfEmpty(String? value, {bool trimmed = true}) {
   if (value == null) return null;
   final _value = trimmed == true ? value.trim() : value;
   if (_value.isEmpty) return null;
@@ -85,7 +85,7 @@ bool isSameDay(DateTime? a, DateTime? b) {
   return a.year == b.year && a.month == b.month && a.day == b.day;
 }
 
-bool isSameDayWithoutYear(DateTime a, DateTime? b) {
+bool isSameDayWithoutYear(DateTime? a, DateTime? b) {
   if (a == null || b == null) {
     return false;
   }
@@ -93,7 +93,7 @@ bool isSameDayWithoutYear(DateTime a, DateTime? b) {
   return a.month == b.month && a.day == b.day;
 }
 
-bool isSameTime(DateTime? a, DateTime b) {
+bool isSameTime(DateTime? a, DateTime? b) {
   if (a == null || b == null) {
     return false;
   }
@@ -112,52 +112,36 @@ String getDecomentIcon(String? extention) {
   switch (extention) {
     case "pdf":
       return VPayIcons.pdf;
-      break;
     case "doc":
       return VPayIcons.doc;
-      break;
     case "xlsx":
       return VPayIcons.xlsx;
-      break;
     case "jpg":
       return VPayIcons.jpg;
-      break;
     case "bmp":
       return VPayIcons.bmp;
-      break;
     case "dib":
       return VPayIcons.dib;
-      break;
     case "gif":
       return VPayIcons.gif;
-      break;
     case "heic":
       return VPayIcons.heic;
-      break;
     case "jpeg":
       return VPayIcons.jpeg;
-      break;
     case "png":
       return VPayIcons.png;
-      break;
     case "tiff":
       return VPayIcons.tiff;
-      break;
     case "webp":
       return VPayIcons.webp;
-      break;
     case "csv":
       return VPayIcons.csv;
-      break;
     case "docx":
       return VPayIcons.docx;
-      break;
     case "txt":
       return VPayIcons.txt;
-      break;
     case "xls":
       return VPayIcons.xls;
-      break;
     default:
       return VPayIcons.other;
   }

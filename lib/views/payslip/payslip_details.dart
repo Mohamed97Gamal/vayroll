@@ -51,7 +51,7 @@ class _PayslipDetailsPageState extends State<PayslipDetailsPage> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_header(context), _body(context), if (!(widget?.payslip?.isAppealed ?? false)) _footer(context)],
+        children: [_header(context), _body(context), if (!(widget.payslip?.isAppealed ?? false)) _footer(context)],
       ),
     );
   }

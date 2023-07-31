@@ -31,7 +31,7 @@ import 'package:vayroll/views/payslip/payslips.dart';
 import 'package:vayroll/views/profile/profile_requests.dart';
 
 Future deepLink(BuildContext context, RemoteMessage? message) async {
-  if (message == null || message.data == null) {
+  if (message == null || message.data.isEmpty) {
     return;
   }
 
@@ -89,7 +89,7 @@ Future deepLink(BuildContext context, RemoteMessage? message) async {
         var appealRequestId = message.data['appealRequestId'];
         var category = message.data['category'];
         final response = await ApiRepo().getEmployeeReportees(employeeId, employeesGroupId);
-        bool hasReporters = response?.result != null && response.result!.isNotEmpty;
+        bool hasReporters = response.result != null && response.result!.isNotEmpty;
         _navToHome();
         switch (category) {
           case AppealCategory.leave:

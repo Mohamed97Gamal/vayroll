@@ -126,8 +126,7 @@ class SendEMailSupportInterceptor extends Interceptor {
   final Dio originalDio;
 
   SendEMailSupportInterceptor(Dio dio)
-      : assert(dio != null),
-        originalDio = dio;
+      : originalDio = dio;
 
   @override
   Future onError(DioError? e, ErrorInterceptorHandler handler) async {

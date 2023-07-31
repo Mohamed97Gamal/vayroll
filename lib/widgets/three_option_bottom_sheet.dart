@@ -85,7 +85,7 @@ Future<bool?> threeOptionBottomSheet({
                 ),
                 SizedBox(height: 12),
                 CustomElevatedButton(
-                  text: textOption3 ?? "",
+                  text: textOption3,
                   onPressed: funOption3 as void Function()?,
                 ),
                 SizedBox(height: 12),

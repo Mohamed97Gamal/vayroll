@@ -35,7 +35,7 @@ class _ExpenseAppealRequestsTabState extends State<ExpenseAppealRequestsTab> {
         return Column(
           children: [
             AppealRequestCard(
-              requestID: "${item.entityReferenceNumber ?? ""}" ?? "",
+              requestID: "${item.entityReferenceNumber ?? ""}",
               requestDate: submissionDate ?? "",
               onTap: () => Navigation.navToAppealRequestDetails(context, item.id),
             ),

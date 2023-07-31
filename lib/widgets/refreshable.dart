@@ -11,8 +11,8 @@ class Refreshable extends StatefulWidget {
   State<StatefulWidget> createState() => RefreshableState();
 
   static RefreshableState? of(BuildContext context, {bool nullOk = false}) {
-    assert(nullOk != null);
-    assert(context != null);
+   // assert(nullOk != null);
+   // assert(context != null);
     final result = context.findAncestorStateOfType<RefreshableState>();
     if (nullOk || result != null) return result;
     throw Exception(context.appStrings!.refreshableException);

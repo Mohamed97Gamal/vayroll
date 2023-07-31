@@ -29,15 +29,15 @@ class LeaveRequestsTabState extends State<LeaveRequestsTab> {
   @override
   void initState() {
     super.initState();
-    if (widget?.isMine != null && widget?.isMine == false) {
-      if (widget?.employeeReportees != null) {
-        widget?.employeeReportees?.forEach((element) {
-          employeesReporteesIds.add(element?.id);
+    if (widget.isMine != null && widget.isMine == false) {
+      if (widget.employeeReportees != null) {
+        widget.employeeReportees?.forEach((element) {
+          employeesReporteesIds.add(element.id);
         });
       }
     }
     _status = null;
-    if (widget?.isMine == null)
+    if (widget.isMine == null)
       refreshKey = context.read<KeyProvider>().leaveKeyAll;
     else if (widget.isMine!)
       refreshKey = context.read<KeyProvider>().leaveKeyMine;
@@ -89,7 +89,7 @@ class LeaveRequestsTabState extends State<LeaveRequestsTab> {
                 //     :
                 await ApiRepo().getActiveRequests(
               RequestKind.leave,
-              isMine: widget?.isMine,
+              isMine: widget.isMine,
               pageIndex: pageKey,
               pageSize: pageSize,
               requestStatus:
@@ -98,7 +98,7 @@ class LeaveRequestsTabState extends State<LeaveRequestsTab> {
                       : [],
             );
             leaveLength = (leaveLength ?? 0) +
-                (requestResult?.result?.records?.length ?? 0);
+                (requestResult.result?.records?.length ?? 0);
             return requestResult.result!.toPagedList();
           },
           itemBuilder: (context, item, index) {

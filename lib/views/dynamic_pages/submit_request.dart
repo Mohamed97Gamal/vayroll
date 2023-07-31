@@ -67,8 +67,8 @@ class SubmitRequestPageState extends State<SubmitRequestPage> {
               initFuture: () async {
                 var drewFieldsResult = await ApiRepo().getRequestDrewFieldsResubmit(
                   _selectedEmp?.id ?? employee?.id,
-                  widget?.requestKind,
-                  widget?.requestStateId,
+                  widget.requestKind,
+                  widget.requestStateId,
                 );
 
                 drewFieldsResult.result!.requestStateAttributes ??= [];
@@ -93,15 +93,14 @@ class SubmitRequestPageState extends State<SubmitRequestPage> {
                 ];
               },
               onSuccess: (context, snapshot) {
-                List<RequestStateAttributesDTO>? fields = snapshot?.data![0]?.result?.requestStateAttributes;
-                final String? requestStateId = snapshot?.data![0]?.result?.requestStateId;
+                List<RequestStateAttributesDTO>? fields = snapshot.data![0]?.result?.requestStateAttributes;
                 if (fields == null) fields = [];
                 final List<LeaveBalanceResponseDTO>? leaveBalancesValues = snapshot.data![1].result;
                 return SubmitRequestForm.resubmit(
                   fields: fields,
-                  requestStateId: widget?.requestStateId,
-                  requestKind: widget?.requestKind,
-                  title: widget?.title,
+                  requestStateId: widget.requestStateId,
+                  requestKind: widget.requestKind,
+                  title: widget.title,
                   employee: _selectedEmp ?? employee,
                   leaveBalancesValues: leaveBalancesValues,
                 );
@@ -110,8 +109,8 @@ class SubmitRequestPageState extends State<SubmitRequestPage> {
           ] else ...[
             ApplyForOthersWidget(
               employee: employee,
-              kindDisplayName: widget?.title,
-              requestKind: widget?.requestKind,
+              kindDisplayName: widget.title,
+              requestKind: widget.requestKind,
               selectEmp: _selectedEmp,
               onChanged: _switchValue
                   ? (emp) => setState(() {
@@ -134,20 +133,20 @@ class SubmitRequestPageState extends State<SubmitRequestPage> {
               child: CustomFutureBuilder<List>(
                 initFuture: () async {
                   return [
-                    await ApiRepo().getRequestDrewFields(_selectedEmp?.id ?? employee?.id, widget?.requestKind),
+                    await ApiRepo().getRequestDrewFields(_selectedEmp?.id ?? employee?.id, widget.requestKind),
                     await ApiRepo().getLeaveBalance(_selectedEmp?.id ?? employee!.id),
                   ];
                 },
                 onSuccess: (context, snapshot) {
-                  List<RequestStateAttributesDTO>? fields = snapshot?.data![0]?.result?.requestStateAttributes;
-                  final String? requestStateId = snapshot?.data![0]?.result?.requestStateId;
+                  List<RequestStateAttributesDTO>? fields = snapshot.data![0]?.result?.requestStateAttributes;
+                  final String? requestStateId = snapshot.data![0]?.result?.requestStateId;
                   if (fields == null) fields = [];
                   final List<LeaveBalanceResponseDTO>? leaveBalancesValues = snapshot.data![1].result;
                   return SubmitRequestForm(
                     fields: fields,
                     requestStateId: requestStateId,
-                    requestKind: widget?.requestKind,
-                    title: widget?.title,
+                    requestKind: widget.requestKind,
+                    title: widget.title,
                     employee: _selectedEmp ?? employee,
                     leaveBalancesValues: leaveBalancesValues,
                   );
@@ -161,6 +160,6 @@ class SubmitRequestPageState extends State<SubmitRequestPage> {
   }
 
   Widget _header() {
-    return TitleStacked(widget?.title, Theme.of(context).primaryColor);
+    return TitleStacked(widget.title, Theme.of(context).primaryColor);
   }
 }

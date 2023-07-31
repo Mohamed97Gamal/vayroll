@@ -314,7 +314,7 @@ class _EmployeesListState extends State<EmployeesList> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    ((empInfo?.firstName ?? "") + " " + (empInfo?.familyAcronym ??"")) ?? "",
+                    ((empInfo?.firstName ?? "") + " " + (empInfo?.familyAcronym ??"")),
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontWeight: FontWeight.normal,
                         ),
