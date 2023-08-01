@@ -6,6 +6,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:vayroll/assets/icons.dart';
 import 'package:vayroll/models/employee.dart';
 import 'package:vayroll/navigation/navigation.dart';
+import 'package:vayroll/providers/providers.dart';
 import 'package:vayroll/utils/utils.dart' as utl;
 
 class HomeCalender extends StatefulWidget {
@@ -77,10 +78,10 @@ class HomeCalenderState extends State<HomeCalender> {
           ),
         ),
         TableCalendar(
-          onPageChanged: widget.onPageChanged,
+          onPageChanged:widget.onPageChanged,
           focusedDay: widget.selectedDay,
-          firstDay: widget.firstDay,
-          lastDay: widget.lastDay,
+          firstDay: DateTime.now().getDay(dayOfWeek: -7*1000),
+          lastDay: DateTime.now().getDay(dayOfWeek: 6*1000),
           daysOfWeekVisible: false,
           calendarFormat: CalendarFormat.week,
           headerVisible: false,

@@ -32,8 +32,8 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
     return CustomFutureBuilder<BaseResponse<EventsResponse>>(
       loadingMessageColor: Colors.white,
       initFuture: () async => await ApiRepo().getEvents(
-        widget.employeeInfo.id??"",
-        widget.employeeInfo.employeesGroup?.id??"",
+        widget.employeeInfo.id ?? "",
+        widget.employeeInfo.employeesGroup?.id ?? "",
         Jiffy.parse(DateTime(DateTime.now().year, 1, 1).toString()).subtract(years: 50).dateTime.toString(),
         Jiffy.parse(DateTime(DateTime.now().year, 12, 31).toString()).add(years: 50).dateTime.toString(),
       ),
@@ -63,22 +63,21 @@ class FullHomeCalanderWidgetState extends State<FullHomeCalanderWidget> {
             firstDay: context.read<StartEndDateProvider>().startDate!,
             lastDay: context.read<StartEndDateProvider>().endDate!,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            // onCalendarCreated: (first, last, format) {
-            //   Future.microtask(() => setState(() {
-            //         context.read<StartEndDateProvider>().startDate = first;
-            //         context.read<StartEndDateProvider>().endDate = last;
-            //         context.read<StartEndDateProvider>().allEvents = allEvents;
-            //       }));
-            // },
-            //onPageChanged: (focusedDay) {
-             // Future.microtask(() => setState(() {
-                //         context.read<StartEndDateProvider>().startDate = first;
-                //         context.read<StartEndDateProvider>().endDate = last;
-                //         context.read<StartEndDateProvider>().allEvents = allEvents;
-                //
-                 //_selectedDay=focusedDay;
-            //  }));
-           // },
+            onCalendarCreated: (first) {
+              Future.microtask(() => setState(() {
+                   // context.read<StartEndDateProvider>().startDate = first;
+                    //context.read<StartEndDateProvider>().endDate = last;
+                    context.read<StartEndDateProvider>().allEvents = allEvents;
+                  }));
+            },
+            onPageChanged: (focusedDay) {
+              Future.microtask(() => setState(() {
+                    context.read<StartEndDateProvider>().startDate = focusedDay.getDay(dayOfWeek: 0);
+                    context.read<StartEndDateProvider>().endDate = focusedDay.getDay(dayOfWeek: 6);
+                    context.read<StartEndDateProvider>().allEvents = allEvents;
+                    _selectedDay = focusedDay;
+                  }));
+            },
           ),
         );
       },

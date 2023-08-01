@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -22,7 +21,7 @@ class BirthdayHomeWidgetState extends State<BirthdayHomeWidget> {
   List<BirthdaysResponse> birthdays = [];
 
   Future<List<String>> getsDaysInWeak(DateTime first, DateTime last) async {
-    final int daysToGenerate = last!.difference(first).inDays;
+    final int daysToGenerate = last.difference(first).inDays;
 
     List<String> days = List.generate(daysToGenerate + 1, (i) {
       return DateFormat("MM-dd").format(DateTime(first.year, first.month, first.day + (i)));
@@ -35,7 +34,7 @@ class BirthdayHomeWidgetState extends State<BirthdayHomeWidget> {
 
     await getsDaysInWeak(first, last).then(
       (days) {
-        allEvents!.birthdays!.forEach((element) {
+        allEvents?.birthdays?.forEach((element) {
           DateTime birthdate = DateFormat("yyyy-MM-dd").parse((element.birthDate!.split("T")[0]));
 
           if (DateTime.now().year == first.year) {

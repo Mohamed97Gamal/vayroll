@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vayroll/models/models.dart';
 
 class StartEndDateProvider extends ChangeNotifier {
-  DateTime? _startDate=DateTime(1800,1,1);
-  DateTime? _endDate=DateTime(2300,12,31);
+  DateTime? _startDate=DateTime.now().getDay(dayOfWeek: 0);
+  DateTime? _endDate=DateTime.now().getDay(dayOfWeek: 6);
   EventsResponse? _allEvents;
 
   DateTime? get startDate => _startDate;
@@ -23,5 +23,10 @@ class StartEndDateProvider extends ChangeNotifier {
   set allEvents(EventsResponse? value) {
     _allEvents = value;
     notifyListeners();
+  }
+}
+extension DateUtils on DateTime {
+  DateTime getDay({required int dayOfWeek}) {
+    return subtract(Duration(days: weekday - dayOfWeek));
   }
 }
