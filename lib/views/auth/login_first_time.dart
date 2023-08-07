@@ -78,7 +78,7 @@ class LoginFirstTimePageState extends State<LoginFirstTimePage> {
           context: context,
           desc: loginResponseMessage ?? userResponseInfo?.message ?? " ",
           icon: loginResponseMessage == "Internal Server Error" || userResponseInfo?.message == "Internal Server Error"
-              ? ""
+              ? "Somethings Went Wrong"
               : VPayIcons.blockUser,
         );
         return;
@@ -93,7 +93,7 @@ class LoginFirstTimePageState extends State<LoginFirstTimePage> {
       if (!fcmResponse.status!) {
         await showCustomModalBottomSheet(
           context: context,
-          desc: fcmResponse.message ?? "",
+          desc: fcmResponse.message ?? "Something went wrong",
           icon: VPayIcons.blockUser,
         );
         return;
@@ -148,7 +148,7 @@ class LoginFirstTimePageState extends State<LoginFirstTimePage> {
 
     await showCustomModalBottomSheet(
       context: context,
-      desc: response.message ?? " ",
+      desc: response.message ?? "Something Went Wrong",
       icon: VPayIcons.blockUser,
     );
     return null;

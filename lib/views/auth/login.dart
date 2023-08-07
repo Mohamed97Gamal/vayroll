@@ -189,7 +189,7 @@ class LoginPageState extends State<LoginPage> {
               "Sorry but we are facing issue authenticating you with biometric , please use your credentials to log you in",
           icon: loginResponseMessage == "Internal Server Error" ||
                   userResponseInfo?.message == "Internal Server Error"
-              ? ""
+              ? "Something Went Wrong"
               : VPayIcons.blockUser,
         );
         return;
@@ -204,7 +204,7 @@ class LoginPageState extends State<LoginPage> {
       if (!fcmResponse.status!) {
         await showCustomModalBottomSheet(
           context: context,
-          desc: fcmResponse.message ?? "",
+          desc: fcmResponse.message ?? "Something Went Wrong",
           icon: VPayIcons.blockUser,
         );
         return;
