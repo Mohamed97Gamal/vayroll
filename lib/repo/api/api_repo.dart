@@ -926,7 +926,7 @@ final response = await _client.post(Urls.login, data: {
         data: accessToken,
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => (response.data['result'] as List<dynamic>?));
+        return BaseResponse.fromJson(response.data, (_) => (response.data['result'] as List<dynamic>));
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
