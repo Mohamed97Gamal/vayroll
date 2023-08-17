@@ -2068,7 +2068,7 @@ final response = await _client.post(Urls.login, data: {
         return BaseResponse.fromJson(
             response.data,
             (_) => (response.data['result'] as List?)
-                ?.map((e) => e == null ? null : HRContact.fromJson(e as Map<String, dynamic>))
+                ?.map((e) => HRContact.fromJson(e as Map<String, dynamic>))
                 .toList() as List<HRContact>);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
@@ -2178,7 +2178,7 @@ final response = await _client.post(Urls.login, data: {
         data: email.toJson(),
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -2194,7 +2194,7 @@ final response = await _client.post(Urls.login, data: {
         "email": email.toJson(),
       });
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());
@@ -2276,7 +2276,7 @@ final response = await _client.post(Urls.login, data: {
         },
       );
       if (response.data['result'] != null)
-        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List?);
+        return BaseResponse.fromJson(response.data, (_) => response.data['result'] as List);
       return BaseResponse.fromMap(response.data);
     } catch (e) {
       return BaseResponse.fromMap(getErrorResponse(e).toMap());

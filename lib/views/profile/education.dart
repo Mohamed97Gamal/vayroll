@@ -106,12 +106,14 @@ class EducationTabState extends State<EducationTab> {
                             final String path = '$dir/${item.certificateFile?.name}';
                             final File file = File(path);
                             file.writeAsBytesSync(base64Decode(response.result!));
-                            await OpenFile.open("$path").then((value) async {
-                              if (value.type == ResultType.noAppToOpen) setState(() {});
-                              await showCustomModalBottomSheet(
-                                context: context,
-                                desc: value.message.substring(0, value.message.length - 1),
-                              );
+                            OpenFile.open("$path").then((value) async {
+                              if (value.type == ResultType.noAppToOpen)
+                                setState(() async {
+                                  await showCustomModalBottomSheet(
+                                    context: context,
+                                    desc: value.message.substring(0, value.message.length - 1),
+                                  );
+                                });
                             });
                           }
                         },

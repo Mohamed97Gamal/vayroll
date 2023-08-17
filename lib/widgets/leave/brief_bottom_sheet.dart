@@ -53,8 +53,8 @@ Future<bool?> briefLeaveBalanceBottomSheet({
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: CircularPercentIndicator(
-                    radius: 94.0,
-                    lineWidth: 5.0,
+                    radius: 45.0,
+                    lineWidth: 8.0,
                     percent: max(0.0, leaveBalanceSummary.percentage as double),
                     center: percentageText(context, leaveBalanceSummary, 15, isSummary: true),
                     progressColor: Theme.of(context).colorScheme.secondary,

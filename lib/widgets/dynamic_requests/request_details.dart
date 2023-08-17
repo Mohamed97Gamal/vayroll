@@ -116,13 +116,13 @@ class RequestDetailsBody extends StatelessWidget {
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircularPercentIndicator(
-                radius: 64.0,
+                radius: 35.0,
                 lineWidth: 5.0,
                 percent: max(0.0, calculatePercentage(leaveBalanceSummary)),
                 center: percentageText(context, leaveBalanceSummary, 9,isSummary: false),

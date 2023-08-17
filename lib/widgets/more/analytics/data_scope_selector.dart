@@ -87,7 +87,7 @@ class _DataScopeSelectorState extends State<DataScopeSelector> {
                                     _radioOptionsValue = value;
                                     _selectedDepartments = departments;
                                     widget?.selectedDepartmentCallback
-                                        ?.call(_selectedDepartments!.map((e) => e.id).toList());
+                                        ?.call(_selectedDepartments!.map((e) => e.id??"").toList());
 
                                     context.read<KeyProvider>().contactsCharts!.currentState!.refresh();
                                     context.read<KeyProvider>().experneceCharts!.currentState!.refresh();
